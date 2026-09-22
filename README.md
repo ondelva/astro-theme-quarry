@@ -3,7 +3,7 @@
 An Astro theme for a developer tool: a marketing site set with the discipline of a printed
 technical reference. Free and MIT-licensed.
 
-[Live demo](https://quarry-free.ondelva.com) · [Pro demo](https://quarry.ondelva.com)
+[Live demo](https://quarry-free.ondelva.com) · [Pro demo](https://quarry.ondelva.com) · [Get Pro](https://buy.polar.sh/polar_cl_zQx1Foq8amGWM4QkOt34GdRKgPDs0AX0A3dUF0mPzQ1)
 
 ![Quarry: the home page and the pricing page](docs/screenshots/home-light.png)
 
@@ -69,7 +69,8 @@ Set `SITE_URL` to your address afterwards. See [docs/deploy.md](docs/deploy.md).
 ## Free vs Pro
 
 This edition is a finished marketing site. Pro is what you buy the day the product needs a manual:
-see it running at [quarry.ondelva.com](https://quarry.ondelva.com).
+see it running at [quarry.ondelva.com](https://quarry.ondelva.com), and [buy it here](https://buy.polar.sh/polar_cl_zQx1Foq8amGWM4QkOt34GdRKgPDs0AX0A3dUF0mPzQ1) — $49 for
+one person, $129 for a team of up to ten.
 
 |                | Free (this repo)                                             | Pro                                                                           |
 | -------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------- |

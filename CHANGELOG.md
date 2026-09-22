@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.0] - 2026-09-22
+
+First release. The demo is live at https://quarry-free.ondelva.com and the screenshots are in
+`docs/screenshots/`.
+
+### Added
+
+- A live demo, and the Pro demo at https://quarry.ondelva.com.
+- A purchase link for Quarry Pro in the README: $49 for one person, $129 for a team of up to ten.
+
 ## [0.9.0] - 2026-09-22
 
 First snapshot of the free edition, cut from Quarry Pro. The live demo and the screenshots

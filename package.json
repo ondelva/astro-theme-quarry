@@ -1,7 +1,7 @@
 {
   "name": "astro-theme-quarry",
   "type": "module",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Quarry - a free Astro theme for a developer tool: a marketing site set like a printed technical reference.",
   "engines": {
