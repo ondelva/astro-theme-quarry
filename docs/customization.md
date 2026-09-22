@@ -20,7 +20,7 @@ to open a component for any of the changes below.
 
 ## Footer credit
 
-The footer carries one line crediting the theme: `Quarry theme by Ondelva`, linking to the theme
+The footer carries one line crediting the theme: `Quarry theme by ondelva`, linking to the theme
 repository. It is a plain link in `src/components/common/Footer.astro` — delete it if you would
 rather not have it. Keeping it is how other people find the theme. Quarry Pro ships without it.
 
@@ -116,6 +116,106 @@ A section is one `<Section>` (`src/components/common/Section.astro`) inside a `.
   heading where the section title is not part of the outline.
 
 Below 900px the label moves above its section on every page, whatever the flag says.
+
+## The product shot
+
+Section 01 of the home page ends with `src/components/sections/ProductFrame.astro`: a drawing of
+the product in rules and mono text. It is drawn rather than photographed on purpose — there is no
+asset to license, no second file to re-shoot for dark mode, and it stays sharp at any width. The
+rows are a `const` at the top of the file, so the quickest change is to put your own query and
+your own results there.
+
+To use a real screenshot instead, replace the body of that file. Nothing else reads it:
+
+```astro
+---
+import { Image } from 'astro:assets';
+import shot from '../../assets/app.png'; // anywhere under src/, not public/
+---
+
+<figure class="border-border border">
+  <Image
+    src={shot}
+    alt="Quarry showing three matches for a search across a notes folder"
+    class="block w-full"
+    loading="eager"
+  />
+</figure>
+```
+
+`loading="eager"` is not optional here. `<Image>` is lazy by default, which is right for a picture
+further down a post and wrong for this one: section 01 is within a screen of the fold, so the shot
+is a candidate for the page's largest contentful paint, and leaving it lazy is the difference CI
+measures. Everything below the fold keeps the default.
+
+Keep the `<figure>`. A screenshot carries its own background, and in light mode most application
+windows are close enough to `--background` that the image loses its edges and stops reading as an
+object; the hairline is what the drawing had and what gives it back.
+
+### Width
+
+The section body is capped at the reading measure (`--content-width`, 38rem), which is narrow for
+an application window. Moving the `<ProductFrame />` out of its `<Section>` in
+`src/pages/index.astro` lets it run to the full shell width:
+
+```astro
+  </Section>
+  <div class="mt-7">
+    <ProductFrame />
+  </div>
+```
+
+The shot is then wider than the column above it and sits outside the rail, so its left edge no
+longer lines up with the heading. That is a trade, not a bug — decide which of the two matters
+more on your page.
+
+### Dark mode
+
+A screenshot does not follow the theme, so a light one sits as a light rectangle on a dark page.
+If that is not acceptable, ship both and swap them.
+
+Do **not** reach for `<picture media="(prefers-color-scheme: dark)">` here: it follows the
+operating system, and this theme's switch writes `data-theme`, which overrides the system setting.
+A visitor on a dark desktop who picks Light would get the dark screenshot on a light page. Render
+both images and let CSS choose, with the same two guards the tokens use:
+
+```astro
+<figure class="border-border border">
+  <Image src={light} alt="Quarry showing three matches" class="shot-light block w-full" loading="eager" />
+  <Image src={dark} alt="Quarry showing three matches" class="shot-dark block w-full" loading="eager" />
+</figure>
+```
+
+```css
+/* src/styles/theme.css — declarations here are unlayered, so they win as they stand. */
+.shot-dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .shot-light {
+    display: none;
+  }
+
+  :root:not([data-theme='light']) .shot-dark {
+    display: block;
+  }
+}
+
+:root[data-theme='dark'] .shot-light {
+  display: none;
+}
+
+:root[data-theme='dark'] .shot-dark {
+  display: block;
+}
+```
+
+Both files are fetched whichever one is shown — `display: none` does not cancel the download — so
+this costs the visitor a second screenshot. The drawing exists to avoid the pair.
+
+`astro:assets` is the only image path in the theme: a raw `<img>` skips the sizing and the format
+conversion, and `public/` skips the hash, so the file is never cached hard.
 
 ## Blog
 

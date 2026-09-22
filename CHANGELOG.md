@@ -2,6 +2,29 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.1] - 2026-09-22
+
+The fixes from Quarry Pro 1.0.1 that apply to this edition.
+
+### Fixed
+
+- `CLAUDE.md` is no longer part of the published snapshot. It is a symlink to `AGENTS.md`, and an
+  archive keeps it as one: an unzip that ignores the symlink bit — Windows Explorer, 7-Zip — left
+  a nine-byte file where the guide should be. `AGENTS.md` is unchanged and is what the README names.
+- The theme switch no longer carries `aria-pressed`. It cycles system, light and dark, and a
+  two-state attribute reported "not pressed" for two of the three.
+- The CI comment named `lighthouserc.json`; the file is `lighthouserc.cjs`.
+
+### Changed
+
+- The questions on the home page use the theme's own disclosure marker, `+` and `−`, rather than
+  the browser's triangle.
+- `docs/customization.md` now covers putting a real screenshot where the product drawing is: keep
+  the frame, set `loading="eager"` because the shot is a candidate for the largest contentful
+  paint, and swap a light/dark pair with the theme's own switch. `<picture>` with
+  `prefers-color-scheme` follows the operating system and not `data-theme`, which is the wrong
+  answer here.
+
 ## [1.0.0] - 2026-09-22
 
 First release. The demo is live at https://quarry-free.ondelva.com and the screenshots are in

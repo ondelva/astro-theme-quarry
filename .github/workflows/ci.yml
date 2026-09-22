@@ -20,7 +20,7 @@ jobs:
       - run: pnpm lint
       - run: pnpm check:contrast
       - run: pnpm build
-      # Thresholds (mobile, 95+ on all four categories) live in lighthouserc.json
+      # Thresholds (mobile, 95+ on all four categories) live in lighthouserc.cjs
       - run: pnpm dlx @lhci/cli@0.15.1 autorun
       # Internal links only; external ones are somebody else's uptime
       - run: pnpm dlx linkinator@8.1.0 dist --recurse --skip '^https?://(?!(localhost|127\.0\.0\.1|\[::1\])[:/])'

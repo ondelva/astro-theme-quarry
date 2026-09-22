@@ -184,8 +184,8 @@ const plans = await getPlans();
         <h2 class="text-2xl font-medium tracking-[-0.028em]">What people ask before they buy.</h2>
         <div class="border-border mt-6 border-t">
           {questions.map((item) => (
-            <details class="border-border border-b">
-              <summary class="marker:text-faint cursor-pointer py-3.5 text-sm font-medium">
+            <details class="disclosure border-border border-b">
+              <summary class="py-3.5 text-sm font-medium">
                 {item.q}
               </summary>
               <p class="text-muted pb-4 text-sm">{item.a}</p>

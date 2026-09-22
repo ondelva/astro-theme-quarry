@@ -265,6 +265,32 @@
       border-block-start: 1px solid var(--border);
     }
   }
+
+  /*
+    The one disclosure idiom in the theme: `+` closed, `−` open, in --faint, so a triangle
+    that is the browser's and not the theme's never appears. Not the em dash the list rows
+    use -- that is this theme's bullet, and on a summary it reads as decoration rather than
+    as "there is more here". `+` and `−` are the same width in the body face, so the label
+    does not shift when the block opens.
+  */
+  .disclosure > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .disclosure > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .disclosure > summary::before {
+    content: '+';
+    margin-inline-end: 0.5rem;
+    color: var(--faint);
+  }
+
+  .disclosure[open] > summary::before {
+    content: '−';
+  }
 }
 
 /*

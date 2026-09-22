@@ -3,7 +3,10 @@
 // color-scheme so every light-dark() token switches with it. No class variant.
 ---
 
-<button type="button" data-theme-toggle aria-pressed="false" class="font-ui text-sm">
+{/* No aria-pressed: this cycles system -> light -> dark, and a two-state attribute
+    would report "not pressed" for two of them. The label is the accessible name, so
+    the button already announces which of the three it is on. */}
+<button type="button" data-theme-toggle class="font-ui text-sm">
   <span data-theme-label>System</span>
 </button>
 
@@ -26,7 +29,6 @@
     if (value === 'system') root.removeAttribute('data-theme');
     else root.setAttribute('data-theme', value);
     if (label) label.textContent = value[0].toUpperCase() + value.slice(1);
-    button?.setAttribute('aria-pressed', String(value === 'dark'));
   };
 
   apply(read());
