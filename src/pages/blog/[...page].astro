@@ -1,0 +1,61 @@
+---
+// The writing index. `[...page]` rather than a separate first page: page one is /blog
+// and there is one template, so the two cannot drift apart.
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/common/PostList.astro';
+import { blog } from '../../config';
+import { getPosts, getTags, tagSlug } from '../../lib/content';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getPosts();
+  return paginate(posts, { pageSize: blog.postsPerPage });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const tags = await getTags();
+---
+
+<Base
+  title={page.currentPage === 1 ? 'Writing' : `Writing, page ${page.currentPage}`}
+  description="Notes on how Quarry indexes, ranks and searches, and what we decided not to build."
+>
+  <div class="shell">
+    <div class="shell-body pt-14 pb-12 sm:pt-20">
+      <h1 class="text-3xl font-medium tracking-[-0.028em] sm:text-4xl">Writing</h1>
+      <p class="text-muted mt-5 text-lg">
+        Mostly about the parts of a search engine that are boring from the outside: what the index
+        leaves out, why ranking changed, and where a network request would have been convenient and
+        was not made.
+      </p>
+      {tags.length > 0 && (
+        <ul class="text-faint mt-8 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px]">
+          {tags.map(({ tag }) => (
+            <li>
+              <a class="hover:text-foreground no-underline" href={`/blog/tag/${tagSlug(tag)}`}>
+                {tag}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    <div class="shell-body pb-20">
+      <PostList posts={page.data} />
+
+      {page.lastPage > 1 && (
+        <nav
+          aria-label="Pagination"
+          class="text-faint mt-8 flex items-baseline justify-between gap-4 font-mono text-[11px]"
+        >
+          {page.url.prev ? <a href={page.url.prev}>Newer</a> : <span />}
+          <span>
+            Page {page.currentPage} of {page.lastPage}
+          </span>
+          {page.url.next ? <a href={page.url.next}>Older</a> : <span />}
+        </nav>
+      )}
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found" noindex>
+  <div class="shell">
+    <div class="shell-body pt-20 pb-24">
+      <p class="text-faint font-mono text-[11px]">404</p>
+      <h1 class="mt-3 text-3xl font-medium tracking-[-0.028em]">Nothing is indexed here.</h1>
+      <p class="text-muted mt-5">
+        The page you asked for is not on this site. It may have moved, or the link may have been
+        written down wrong.
+      </p>
+      <ul class="border-border mt-8 border-t text-sm">
+        <li class="border-border border-b py-3">
+          <a href="/blog">Writing</a>
+        </li>
+        <li class="border-border border-b py-3">
+          <a href="/pricing">Pricing</a>
+        </li>
+        <li class="border-border border-b py-3">
+          <a href="/">Home</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</Base>

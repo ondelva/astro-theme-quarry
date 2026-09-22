@@ -1,0 +1,84 @@
+---
+// A plain POST to whatever service src/config.ts names. No script, no validation
+// library: the browser already refuses to submit an empty required field and marks
+// a malformed address, and the styles for both live in global.css.
+import Base from '../layouts/Base.astro';
+import { contact, nav, site } from '../config';
+---
+
+<Base
+  title="Contact"
+  description={`Ask a question about ${site.name}, report a problem, or write about a licence.`}
+>
+  <div class="shell">
+    <div class="shell-body pt-14 pb-20 sm:pt-20">
+      <h1 class="text-3xl font-medium tracking-[-0.028em] sm:text-4xl">Write to us.</h1>
+      <p class="text-muted mt-5 text-lg">
+        A licence question, a file that will not index, a feature you need. It reaches the two
+        people who write the software, not a queue.
+      </p>
+
+      <form
+        class="border-border mt-10 grid gap-5 border-t pt-10"
+        action={contact.formEndpoint}
+        method="post"
+      >
+        <div>
+          <label class="text-sm font-medium" for="name">
+            Name
+          </label>
+          <input class="mt-1.5" id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div>
+          <label class="text-sm font-medium" for="email">
+            Email
+          </label>
+          <input
+            class="mt-1.5"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div>
+          <label class="text-sm font-medium" for="message">
+            Message
+          </label>
+          <textarea class="mt-1.5" id="message" name="message" rows="6" required></textarea>
+          <p class="text-faint mt-2 text-sm">
+            If it is a file that will not index, the output of{' '}
+            <code class="font-mono text-[0.84375rem]">quarry status</code> tells us more than
+            anything else you could paste.
+          </p>
+        </div>
+        <div>
+          <button class="btn" type="submit">
+            Send
+          </button>
+        </div>
+      </form>
+
+      <dl class="border-border mt-12 border-t text-sm">
+        <div class="border-border flex flex-wrap gap-x-6 gap-y-1 border-b py-4">
+          <dt class="text-faint w-32 font-mono text-[11px]">Reply</dt>
+          <dd class="text-muted flex-1">{contact.responseTime}</dd>
+        </div>
+        <div class="border-border flex flex-wrap gap-x-6 gap-y-1 border-b py-4">
+          <dt class="text-faint w-32 font-mono text-[11px]">By mail</dt>
+          <dd class="text-muted flex-1">
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          </dd>
+        </div>
+        <div class="border-border flex flex-wrap gap-x-6 gap-y-1 border-b py-4">
+          <dt class="text-faint w-32 font-mono text-[11px]">Bugs</dt>
+          <dd class="text-muted flex-1">
+            The <a href={nav.social[0].href}>issue tracker</a> is read before this form is, and
+            other people can see the answer there.
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</Base>
