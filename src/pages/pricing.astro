@@ -4,6 +4,7 @@
 import Base from '../layouts/Base.astro';
 import Section from '../components/common/Section.astro';
 import { getPlans, money } from '../lib/content';
+import { ui } from '../config';
 
 const plans = await getPlans();
 
@@ -54,18 +55,22 @@ const questions = [
           <article class="border-border border-b py-9 first:pt-0">
             <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
               <h3 class="text-xl font-medium tracking-[-0.028em]">{data.name}</h3>
-              {data.featured && <p class="text-primary font-mono text-[11px]">Most bought</p>}
+              {data.featured && (
+                <p class="text-primary font-mono text-[11px]">{ui.pricing.featured}</p>
+              )}
               {/* $0 rather than the word: the plan is already called Free, and the
                     three prices only line up when all three are numbers. */}
               <p class="ml-auto text-3xl font-medium tracking-[-0.03em] tabular-nums">
                 {money(data.priceMonthly, data.currency)}
-                <span class="text-faint text-sm font-normal tracking-normal"> a month</span>
+                <span class="text-faint text-sm font-normal tracking-normal">
+                  {ui.pricing.month}
+                </span>
               </p>
             </div>
             <p class="text-muted mt-2">{data.tagline}</p>
             {data.priceMonthly > 0 && (
               <p class="text-faint mt-1 font-mono text-[11px]">
-                {money(data.priceMonthly * 12, data.currency)} over twelve months
+                {ui.pricing.twelveMonths(money(data.priceMonthly * 12, data.currency))}
               </p>
             )}
             <ul class="mt-6 grid gap-2 text-sm">

@@ -81,3 +81,69 @@ export const analytics = {
   // Empty means the hosted service. GA4 ignores it.
   host: '',
 };
+
+// Every word the theme prints around your content, in one place: translate these and set
+// site.locale, which also sets dates and prices. Counts are functions, so plurals stay right:
+// posts: (count) => `${count} Artikel`. Strings marked HTML carry a link and are printed as
+// markup. The marketing pages (home, pricing, about) are written in their own files under
+// src/pages/.
+const n = (count: number, one: string, many: string) => `${count} ${count === 1 ? one : many}`;
+export const ui = {
+  skipToContent: 'Skip to content',
+  mainNav: 'Main', // read out for the header links
+  rss: 'RSS',
+  theme: { system: 'System', light: 'Light', dark: 'Dark' },
+  updated: 'Updated',
+  lastUpdated: (date: string) => `Last updated ${date}`,
+  pagination: 'Pagination', // read out for the newer/older and previous/next links
+  blog: {
+    title: 'Writing',
+    page: (page: number) => `Writing, page ${page}`,
+    description:
+      'Notes on how Quarry indexes, ranks and searches, and what we decided not to build.',
+    intro:
+      'Mostly about the parts of a search engine that are boring from the outside: what the index leaves out, why ranking changed, and where a network request would have been convenient and was not made.',
+    newer: 'Newer',
+    older: 'Older',
+    pageOf: (page: number, last: number) => `Page ${page} of ${last}`,
+    minutes: (count: number) => `${count} min`,
+    all: 'All writing',
+    tag: 'Tag',
+    tagDescription: (tag: string) => `Everything written about ${tag}.`,
+    posts: (count: number) => n(count, 'post', 'posts'),
+    feed: `${site.name} — Writing`, // the RSS feed's title
+  },
+  pricing: {
+    month: ' a month', // after a price, with its space
+    twelveMonths: (price: string) => `${price} over twelve months`,
+    featured: 'Most bought',
+  },
+  contact: {
+    title: 'Contact',
+    description: `Ask a question about ${site.name}, report a problem, or write about a licence.`,
+    heading: 'Write to us.',
+    intro:
+      'A licence question, a file that will not index, a feature you need. It reaches the two people who write the software, not a queue.',
+    name: 'Name',
+    email: 'Email',
+    message: 'Message',
+    // HTML
+    messageHint:
+      'If it is a file that will not index, the output of <code class="font-mono text-[0.84375rem]">quarry status</code> tells us more than anything else you could paste.',
+    send: 'Send',
+    reply: 'Reply',
+    byMail: 'By mail',
+    bugs: 'Bugs',
+    // HTML. {issues} is the first link in nav.social.
+    bugsText:
+      'The <a href="{issues}">issue tracker</a> is read before this form is, and other people can see the answer there.',
+  },
+  notFound: {
+    title: 'Page not found',
+    heading: 'Nothing is indexed here.',
+    text: 'The page you asked for is not on this site. It may have moved, or the link may have been written down wrong.',
+    blog: 'Writing',
+    pricing: 'Pricing',
+    home: 'Home',
+  },
+};

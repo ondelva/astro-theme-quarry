@@ -5,6 +5,7 @@ import type { GetStaticPaths } from 'astro';
 import Base from '../../../layouts/Base.astro';
 import PostList from '../../../components/common/PostList.astro';
 import { getPosts, getTags, tagSlug } from '../../../lib/content';
+import { ui } from '../../../config';
 
 export const getStaticPaths = (async () => {
   const [posts, tags] = await Promise.all([getPosts(), getTags()]);
@@ -17,14 +18,13 @@ export const getStaticPaths = (async () => {
 const { tag, posts } = Astro.props;
 ---
 
-<Base title={`${tag}`} description={`Everything written about ${tag}.`}>
+<Base title={`${tag}`} description={ui.blog.tagDescription(tag)}>
   <div class="shell">
     <div class="shell-body pt-14 pb-20 sm:pt-20">
-      <p class="text-faint font-mono text-[11px]">Tag</p>
+      <p class="text-faint font-mono text-[11px]">{ui.blog.tag}</p>
       <h1 class="mt-3 text-3xl font-medium tracking-[-0.028em] sm:text-4xl">{tag}</h1>
       <p class="text-muted mt-5">
-        {posts.length}
-        {posts.length === 1 ? ' post' : ' posts'}. <a href="/blog">All writing</a>
+        {ui.blog.posts(posts.length)}. <a href="/blog">{ui.blog.all}</a>
       </p>
       <div class="mt-10">
         <PostList posts={posts} showTags={false} />

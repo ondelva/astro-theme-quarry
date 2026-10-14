@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.0] - 2026-10-14
+
+### Added
+
+- Every word the theme prints around your content is in `ui` in `src/config.ts`, ready to translate: navigation labels, the blog chrome, the contact form, the 404 page and the price units.
+
 ## [1.0.2] - 2026-10-14
 
 ### Fixed

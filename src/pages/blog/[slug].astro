@@ -4,7 +4,7 @@
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { blog, site } from '../../config';
+import { blog, site, ui } from '../../config';
 import { formatDate, getPosts, isoDate, readingTime, tagSlug } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -36,11 +36,11 @@ const jsonLd = [
       <p class="text-faint mt-5 flex flex-wrap gap-x-4 font-mono text-[11px]">
         <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
         {author && <span>{author}</span>}
-        {blog.showReadingTime && <span>{readingTime(entry.body)} min</span>}
+        {blog.showReadingTime && <span>{ui.blog.minutes(readingTime(entry.body))}</span>}
       </p>
       {updatedDate && (
         <p class="text-faint mt-1.5 font-mono text-[11px]">
-          Updated <time datetime={isoDate(updatedDate)}>{formatDate(updatedDate)}</time>
+          {ui.updated} <time datetime={isoDate(updatedDate)}>{formatDate(updatedDate)}</time>
         </p>
       )}
       <div class="prose border-border mt-9 border-t pt-9">
@@ -60,7 +60,7 @@ const jsonLd = [
           </ul>
         )}
         <p class="text-sm">
-          <a href="/blog">All writing</a>
+          <a href="/blog">{ui.blog.all}</a>
         </p>
       </div>
     </article>

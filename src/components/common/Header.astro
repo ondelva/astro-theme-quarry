@@ -2,7 +2,7 @@
 // Sticky, one hairline, no dropdown. Four links and a call to action fit on one row
 // at 640px and wrap to a second row below it, which is cheaper than a menu that
 // needs script to open.
-import { features, nav, site } from '../../config';
+import { features, nav, site, ui } from '../../config';
 import ThemeToggle from './ThemeToggle.astro';
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
@@ -17,7 +17,7 @@ const isCurrent = (href: string) =>
       {site.name}
     </a>
 
-    <nav aria-label="Main" class="order-last w-full sm:order-none sm:w-auto">
+    <nav aria-label={ui.mainNav} class="order-last w-full sm:order-none sm:w-auto">
       <ul class="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
         {nav.header.map((item) => (
           <li>

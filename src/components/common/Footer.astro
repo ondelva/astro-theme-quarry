@@ -2,7 +2,7 @@
 // Three link groups from src/config.ts, then one mono line. The group headings use the
 // same mono label as the marginal index, which is the only label style in the theme.
 import { Icon } from 'astro-icon/components';
-import { nav, site } from '../../config';
+import { nav, site, ui } from '../../config';
 
 const year = new Date().getUTCFullYear();
 ---
@@ -51,7 +51,7 @@ const year = new Date().getUTCFullYear();
         ))}
         <li>
           <a class="hover:text-foreground no-underline" href="/rss.xml">
-            RSS
+            {ui.rss}
           </a>
         </li>
       </ul>

@@ -13,7 +13,7 @@ to open a component for any of the changes below.
 - `url` — your production URL. Set it before you deploy: canonical links, the feed, the sitemap
   and `robots.txt` all print absolute URLs from it.
 - `locale` — a BCP 47 tag. It is the `lang` attribute, and it decides how dates and prices are
-  formatted (`Intl`). The words the theme prints are English, in the components.
+  formatted (`Intl`). The words the theme prints are in `ui`; see [Words and language](#words-and-language).
 - `author` — the fallback byline on a post, and the name in the JSON-LD.
 - `defaultOgImage` — the share card for every page. `public/og-default.png` ships with the theme,
   set in the theme's own faces; replace that file, or point this at another 1200×630 one.
@@ -23,6 +23,18 @@ to open a component for any of the changes below.
 The footer carries one line crediting the theme: `Quarry theme by ondelva`, linking to the theme
 repository. It is a plain link in `src/components/common/Footer.astro` — delete it if you would
 rather not have it. Keeping it is how other people find the theme. Quarry Pro ships without it.
+
+## Words and language
+
+`ui` at the end of `src/config.ts` holds every word the theme prints around your content: the
+skip link, the theme switch, the blog headings and pager, the contact form, the 404 page and the
+price units on `/pricing`. To publish in another language, set `site.locale` and translate `ui`.
+Counts are functions, so plurals stay right: ``posts: (count) => `${count} Artikel` ``. Strings
+marked HTML carry a link or a `<code>` and are printed as markup: keep the tags when you translate
+them.
+
+The marketing pages are written in their own files, not in `ui`: `src/pages/index.astro`,
+`pricing.astro` (the headings, the FAQ) and `about.astro`.
 
 ## Navigation, footer and social links
 
