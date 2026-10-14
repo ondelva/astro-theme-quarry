@@ -26,9 +26,16 @@ export const formatDate = (date: Date) => dayFormat.format(date);
 /** The machine-readable half of a <time> element. */
 export const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 
+// Chinese and Japanese are written without spaces: each character counts as a word and reads
+// faster than one. Korean separates words with spaces and counts like English.
+const CJK = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu;
+
 /** Minutes at 230 words per minute, rounded up to at least one. */
-export const readingTime = (body = '') =>
-  Math.max(1, Math.ceil(body.trim().split(/\s+/).length / 230));
+export const readingTime = (body = '') => {
+  const cjk = body.match(CJK)?.length ?? 0;
+  const words = body.replace(CJK, ' ').trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 230 + cjk / 400));
+};
 
 export const money = (amount: number, currency = 'USD') =>
   new Intl.NumberFormat(site.locale, {

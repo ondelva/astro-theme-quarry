@@ -159,10 +159,7 @@ an application window. Moving the `<ProductFrame />` out of its `<Section>` in
 `src/pages/index.astro` lets it run to the full shell width:
 
 ```astro
-  </Section>
-  <div class="mt-7">
-    <ProductFrame />
-  </div>
+
 ```
 
 The shot is then wider than the column above it and sits outside the rail, so its left edge no
@@ -181,8 +178,18 @@ both images and let CSS choose, with the same two guards the tokens use:
 
 ```astro
 <figure class="border-border border">
-  <Image src={light} alt="Quarry showing three matches" class="shot-light block w-full" loading="eager" />
-  <Image src={dark} alt="Quarry showing three matches" class="shot-dark block w-full" loading="eager" />
+  <Image
+    src={light}
+    alt="Quarry showing three matches"
+    class="shot-light block w-full"
+    loading="eager"
+  />
+  <Image
+    src={dark}
+    alt="Quarry showing three matches"
+    class="shot-dark block w-full"
+    loading="eager"
+  />
 </figure>
 ```
 
