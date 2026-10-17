@@ -46,6 +46,15 @@ no second file to keep in step with it.
 Reading time (from the body), the tag counts, the tag slugs, the pagination and every URL. Do not
 add a field for any of them.
 
+## Math
+
+`$…$` sets a formula inline and `$$…$$` on its own lines, in `.md` and `.mdx` alike. KaTeX turns
+it into HTML at build time, so the page ships no script for it, and only a page with math loads the
+KaTeX stylesheet. Chemical equations use mhchem: `$\ce{2H2 + O2 -> 2H2O}$`.
+
+Two dollar signs in one paragraph (`$20 and $30`) read as a formula between them. Write `\$` for a
+literal dollar sign.
+
 ## MDX
 
 A `.md` file is prose. Use `.mdx` when a post needs a component of your own, imported at the top

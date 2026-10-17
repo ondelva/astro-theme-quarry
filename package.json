@@ -1,7 +1,7 @@
 {
   "name": "astro-theme-quarry",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "description": "Quarry - a free Astro theme for a developer tool: a marketing site set like a printed technical reference.",
   "engines": {
@@ -27,6 +27,7 @@
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.3",
     "astro-icon": "1.2.0",
+    "katex": "^0.19.0",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {

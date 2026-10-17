@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.2.0] - 2026-10-17
+
+### Added
+
+- Math in posts: `$…$` inline and `$$…$$` display, rendered with KaTeX at build time (no client
+  JavaScript). Chemical equations work through mhchem (`\ce{…}`). The KaTeX stylesheet and fonts
+  load only on pages that contain math, and a wide formula scrolls in a box the keyboard can reach.
+  If an existing post has two dollar amounts in one paragraph (`$20 and $30`), the text between
+  them now renders as a formula: escape them as `\$20`.
+
 ## [1.1.0] - 2026-10-14
 
 ### Added

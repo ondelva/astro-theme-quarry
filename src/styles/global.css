@@ -408,6 +408,16 @@
     overflow-x: auto;
   }
 
+  /* A display formula scrolls the same way (src/lib/math.ts). KaTeX's glyphs overhang the line
+     box by a few px at any formula height, and the scroll box would clip them, so half of
+     KaTeX's 1em margin moves inside as padding. */
+  .prose .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-block: 0.5em;
+    padding-block: 0.5em;
+  }
+
   .prose table {
     width: 100%;
     border-collapse: collapse;

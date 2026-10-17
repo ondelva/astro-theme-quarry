@@ -5,6 +5,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 import { satteri } from '@astrojs/markdown-satteri';
+import { math } from './src/lib/math.ts';
 import { site } from './src/config.ts';
 
 // Five scopes and the ink. A printed manual colours keywords, strings, numbers,
@@ -86,6 +87,8 @@ export default defineConfig({
     // the scroll box is added here rather than in the page; `tabindex` is what makes a
     // scrollable box reachable without a mouse, and axe fails the page without it.
     processor: satteri({
+      features: { math: true },
+      mdastPlugins: [math],
       hastPlugins: [
         {
           name: 'quarry-scrollable-tables',

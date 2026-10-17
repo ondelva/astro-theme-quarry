@@ -37,6 +37,14 @@ Quarry keeps this small in a few ways. Terms are stored once, in a sorted list, 
 
 That is a simplified view of the logical structure. On disk it is packed with variable-length integers, not JSON, but the shape is the same. Common terms compress especially well because their posting lists are long and their deltas are small.
 
+The arithmetic is short. A posting stores the gap $g_i = d_i - d_{i-1}$ instead of the document ID $d_i$, and a variable-length integer spends one byte on every seven bits of it:
+
+$$
+\text{bytes}(g) = \left\lceil \frac{\lfloor \log_2 g \rfloor + 1}{7} \right\rceil
+$$
+
+Any gap under 128 fits in one byte. In a long posting list almost every gap does, where a raw 32-bit ID would take four.
+
 ## The document table
 
 The document table is the smallest of the three and the least interesting to optimize, since it is one fixed-size record per file: a path, a size, a modification time, and a content hash used to detect changes without re-reading the file. Its size scales with the number of files, not their content, so it stays proportionally tiny even on a folder with a few very large files.

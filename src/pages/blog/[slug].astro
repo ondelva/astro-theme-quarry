@@ -3,6 +3,7 @@
 // body is the same `.prose` every other page sets its text in.
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
+import katexCss from 'katex/dist/katex.min.css?url';
 import Base from '../../layouts/Base.astro';
 import { blog, site, ui } from '../../config';
 import { formatDate, getPosts, isoDate, readingTime, tagSlug } from '../../lib/content';
@@ -13,7 +14,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, remarkPluginFrontmatter } = await render(entry);
 const { title, description, pubDate, updatedDate, tags, author } = entry.data;
 
 const jsonLd = [
@@ -30,6 +31,7 @@ const jsonLd = [
 ---
 
 <Base title={title} description={description} type="article" jsonLd={jsonLd}>
+  {remarkPluginFrontmatter.hasMath && <link slot="head" rel="stylesheet" href={katexCss} />}
   <div class="shell">
     <article class="shell-body pt-14 pb-20 sm:pt-20">
       <h1 class="text-3xl font-medium tracking-[-0.028em] sm:text-4xl">{title}</h1>
