@@ -5,6 +5,8 @@ technical reference. Free and MIT-licensed.
 
 [Live demo](https://quarry-free.ondelva.com) · [Pro demo](https://quarry.ondelva.com) · [Get Pro](https://buy.polar.sh/polar_cl_zQx1Foq8amGWM4QkOt34GdRKgPDs0AX0A3dUF0mPzQ1)
 
+What's new: [release notes](https://github.com/ondelva/astro-theme-quarry/releases) · [changelog in the demo](https://quarry-free.ondelva.com/whats-new/)
+
 ![Quarry: the home page and the pricing page](docs/screenshots/home-light.png)
 
 ## What it is
