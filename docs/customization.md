@@ -21,7 +21,7 @@ to open a component for any of the changes below.
 ## Footer credit
 
 The footer carries one line crediting the theme: `Quarry theme by ondelva`, linking to the theme
-repository. It is a plain link in `src/components/common/Footer.astro` — delete it if you would
+page on ondelva.com. It is a plain link in `src/components/common/Footer.astro` — delete it if you would
 rather not have it. Keeping it is how other people find the theme. Quarry Pro ships without it.
 
 ## Words and language
